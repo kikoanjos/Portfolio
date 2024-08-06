@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@keyframes outline-animation {
+    0% {
+        stroke-dasharray: 0 400;
+        stroke-dashoffset: 0;
+    }
+    25% {
+        stroke-dasharray: 100 300;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 200 200;
+        stroke-dashoffset: 0;
+    }
+    75% {
+        stroke-dasharray: 300 100;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dasharray: 400 0;
+        stroke-dashoffset: 0;
+    }
+}
+
+body {
+    color: rgb(230, 230, 230);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+section {
+    flex: none;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    width: 90vw;
+    height: 100vh;
+    scroll-snap-align: center;
+    position: relative; /* Para posicionar as setas */
+
+    .autoShow {
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 200px;
+        transition: opacity 0.5s ease-out;
+    }
+
+    &:nth-of-type(1) {
+        background-color: rgb(15, 15, 15);
+        width: 95vw;
+    }
+
+    &:nth-of-type(2) {
+        background-color: rgb(20, 20, 20);
+    }
+
+    &:nth-of-type(3) {
+        background-color: rgb(25, 25, 25);
+    }
+
+    &:nth-of-type(4) {
+        background-color: rgb(30, 30, 30);
+        width: 95vw;
+    }
+}
+
+.autoShowAnimationOff {
+    opacity: 0;
+}
+
+.autoShowAnimationOn {
+    opacity: 1;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    opacity: 0; /* Começa invisível */
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+.show-arrow {
+    opacity: 1; /* Torna a seta visível */
+}
+
+.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    left: 40%;
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 20px;
+
+    hr {
+        flex-grow: 1;
+        height: 4px;
+        background-color: white;
+        border: none;
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+
+    .contact {
+        display: flex;
+        gap: 10px;
+        font-size: 36px;
+        margin-bottom: 5px;
+
+        .logo {
+            text-decoration: none; /* Remove sublinhado */
+            color: inherit; /* Remove cor padrão do link */
+            transition: all 0.3s ease; /* Transição suave */
+            position: relative;
+        }
+    }
+}
+
+@media(prefers-reduce-motion) {
+    .hidden {
+        transition: none;
+    }
+}
