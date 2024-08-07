@@ -1,3 +1,4 @@
+//Observer and animation of sections
 const autoShows = document.querySelectorAll(".autoShow")
 
 const observer = new IntersectionObserver(
@@ -21,21 +22,36 @@ autoShows.forEach(autoShow => {
     observer.observe(autoShow)
 }) 
 
-
-
-
-document.addEventListener('wheel', function(event) {
-    // Prevent the default scroll behavior
-    event.preventDefault();
-
-    // Scroll horizontally based on vertical scroll amount
-    document.querySelector('.container').scrollBy({
-        left: event.deltaY,
-        behavior: 'smooth' // Adiciona rolagem suave
-    });
-});
-
+//Scroll Horizontally
 document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.container');
+    let scrollAllowed = true;
+    const scrollDelay = 700; // Tempo de espera em milissegundos
+
+    // Função para habilitar rolagem após o atraso
+    function enableScroll() {
+        scrollAllowed = true;
+    }
+
+    document.addEventListener('wheel', function(event) {
+        if (scrollAllowed) {
+            // Prevent the default scroll behavior
+            event.preventDefault();
+
+            // Scroll horizontally based on vertical scroll amount
+            container.scrollBy({
+                left: event.deltaY,
+                behavior: 'smooth' // Adiciona rolagem suave
+            });
+
+            // Bloqueia a rolagem temporariamente
+            scrollAllowed = false;
+
+            // Define um tempo de espera antes de permitir rolar novamente
+            setTimeout(enableScroll, scrollDelay);
+        }
+    });
+
     const sections = document.querySelectorAll('section');
     sections.forEach((section, index) => {
         const prevIndex = index > 0 ? index - 1 : sections.length - 1;
