@@ -1,28 +1,4 @@
-//Observer and animation of sections
-const autoShows = document.querySelectorAll(".autoShow")
-
-const observer = new IntersectionObserver(
-    entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("autoShowAnimationOn");
-                entry.target.classList.remove("autoShowAnimationOff");
-            } else {
-                entry.target.classList.remove("autoShowAnimationOn");
-                entry.target.classList.add("autoShowAnimationOff");
-            }
-        })
-}, 
-    {
-    threshold: 0.5,
-    }
-)   
-
-autoShows.forEach(autoShow => {
-    observer.observe(autoShow)
-}) 
-
-//Scroll Horizontally
+// Scroll Horizontally
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.container');
     let scrollAllowed = true;
@@ -52,6 +28,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+     // Função para rolar suavemente para a seção clicada
+     document.querySelectorAll('.nav-links li a').forEach(anchor => {
+        anchor.addEventListener('click', function(event) {
+            event.preventDefault();
+            const targetId = this.getAttribute('href').substring(1); // Remove o # do href
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Função para as setas serem interagidas
     const sections = document.querySelectorAll('section');
     sections.forEach((section, index) => {
         const prevIndex = index > 0 ? index - 1 : sections.length - 1;
@@ -72,31 +62,117 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    const leftArrows = document.querySelectorAll('.left-arrow');
-    const rightArrows = document.querySelectorAll('.right-arrow');
+    // Função para fazer as setas aparecerem
+    const edgeThreshold = window.innerWidth / 4; // 25% da largura da tela
 
     function handleMouseMove(event) {
         const mouseX = event.clientX;
         const viewportWidth = window.innerWidth;
-        const edgeThreshold = viewportWidth / 4; // Metade da largura da tela
 
-        if (mouseX < edgeThreshold) {
-            // Mouse está na metade esquerda
-            leftArrows.forEach(arrow => arrow.classList.add('show-arrow'));
-        } else {
-            leftArrows.forEach(arrow => arrow.classList.remove('show-arrow'));
-        }
+        sections.forEach((section) => {
+            const leftArrow = section.querySelector('.left-arrow');
+            const rightArrow = section.querySelector('.right-arrow');
 
-        if (mouseX > viewportWidth - edgeThreshold) {
-            // Mouse está na metade direita
-            rightArrows.forEach(arrow => arrow.classList.add('show-arrow'));
-        } else {
-            rightArrows.forEach(arrow => arrow.classList.remove('show-arrow'));
-        }
+            if (section.classList.contains("is-arrow-visible")) {
+                // Mostrar a seta esquerda se o mouse estiver na parte esquerda da tela e existir a seta esquerda
+                if (leftArrow && mouseX < edgeThreshold) {
+                    leftArrow.classList.add('show-arrow');
+                } else if (leftArrow) {
+                    leftArrow.classList.remove('show-arrow');
+                }
+
+                // Mostrar a seta direita se o mouse estiver na parte direita da tela e existir a seta direita
+                if (rightArrow && mouseX > viewportWidth - edgeThreshold) {
+                    rightArrow.classList.add('show-arrow');
+                } else if (rightArrow) {
+                    rightArrow.classList.remove('show-arrow');
+                }
+            } else {
+                // Ocultar ambas as setas se a secção não estiver totalmente visível
+                if (leftArrow) leftArrow.classList.remove('show-arrow');
+                if (rightArrow) rightArrow.classList.remove('show-arrow');
+            }
+        });
     }
 
     document.addEventListener('mousemove', handleMouseMove);
+
+    // Função do IntersectionObserver para detectar visibilidade das secções
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-arrow-visible");
+
+                    // Remover as setas da seção anterior
+                    sections.forEach(section => {
+                        if (section !== entry.target) {
+                            const leftArrow = section.querySelector('.left-arrow');
+                            const rightArrow = section.querySelector('.right-arrow');
+                            if (leftArrow) leftArrow.classList.remove('show-arrow');
+                            if (rightArrow) rightArrow.classList.remove('show-arrow');
+                        }
+                    });
+                } else {
+                    entry.target.classList.remove("is-arrow-visible");
+                }
+            });
+        }, 
+        {
+            threshold: 0.5,
+        }
+    );   
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const autoShows = document.querySelectorAll(".autoShow")
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("autoShowAnimationOn");
+                    entry.target.classList.remove("autoShowAnimationOff");
+                } else {
+                    entry.target.classList.remove("autoShowAnimationOn");
+                    entry.target.classList.add("autoShowAnimationOff");
+                }
+            })
+    }, 
+        {
+        threshold: 0.5,
+        }
+    )   
+
+    autoShows.forEach(autoShow => {
+        observer.observe(autoShow)
+    }) 
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links li a');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                const activeLink = document.querySelector(`.nav-links li a[href="#${entry.target.id}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+    }, { threshold: 0.5 }); // Ajuste o threshold conforme necessário
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+});
+

@@ -11,18 +11,48 @@
 
 <body>
     <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">Rodrigo<span>.</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
     
     <div class="container">
-        <section>
+        <section id="home">
             <div class="autoShow">
-                <h1>Bem-vindo ao meu Portfólio</h1>
-                <p>Sou um web designer especializado em criar experiências digitais incríveis.</p>
+                <div class="home">
+                    <div class="text-content">
+                        <h4>Informatic Engineer</h4>
+                        <h1>Hello I'm</h1>
+                        <h1><span>Rodrigo Anjos</span></h1>
+                        <p id="home-text-1">I'm an intermediate programmer.</p>
+                        <p id="home-text-2">Training to gain experience as a full-stack developer.</p>
+                        <div class="container-info">
+                            <a href="#" class="btn-cv">Download CV <i class="ri-download-2-line"></i></a>
+                            <div class="contact">
+                                <a class="logo" href="https://www.linkedin.com/in/rodrigo-anjos-5532a5196/" target="_blank" rel="noopener noreferrer"><i class="ri-linkedin-fill"></i></a>
+                                <a class="logo" href="https://github.com/kikoanjos" target="_blank" rel="noopener noreferrer"><i class="ri-github-fill"></i></a>
+                                <a class="logo" href="https://www.linkedin.com/in/rodrigo-anjos-5532a5196/" target="_blank" rel="noopener noreferrer"><i class="ri-playstation-fill"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-pic">
+                        <img src="photo/Rodrigo_Anjos.png" alt="Rodrigo Anjos">
+                    </div>
+                </div>
             </div>
+            <div class="arrow left-arrow" id="unique-left-arrow">&#10094;</div>
             <div class="arrow right-arrow">&#10095;</div>
         </section>
 
-        <section>
+        <section id="resume">
             <div class="autoShow">
                 <h2>Sobre Mim</h2>
                 <p>Tenho X anos de experiência em design web, com um foco em criar sites funcionais e esteticamente agradáveis.</p>
@@ -31,7 +61,7 @@
             <div class="arrow right-arrow">&#10095;</div>
         </section>
 
-        <section>
+        <section id="work">
             <div class="autoShow">
                 <h2>Meus Trabalhos</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ipsum veniam modi dolores ipsam esse 
@@ -41,22 +71,14 @@
             <div class="arrow right-arrow">&#10095;</div>
         </section>
 
-        <section>
+        <section id="contact">
             <div class="autoShow">
                 <h2>Contato</h2>
                 <a href="https://www.linkedin.com/in/rodrigo-anjos-5532a5196/">Linkdine</a>
             </div>
             <div class="arrow left-arrow">&#10094;</div>
+            <div class="arrow right-arrow" id="unique-right-arrow">&#10095;</div>
         </section>
     </div>
-
-    <footer class="sticky-footer">
-        <hr class="line"></hr>
-        <div class="contact">
-            <a class="logo" href="https://www.linkedin.com/in/rodrigo-anjos-5532a5196/" target="_blank" rel="noopener noreferrer"><i class="ri-linkedin-fill"></i></a>
-            <a class="logo" href="https://www.linkedin.com/in/rodrigo-anjos-5532a5196/" target="_blank" rel="noopener noreferrer"><i class="ri-playstation-fill"></i></a>
-        </div>
-        <hr class="line"></hr>
-    </footer>    
 </body>
 </html>
