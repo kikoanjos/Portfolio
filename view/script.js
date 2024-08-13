@@ -2,60 +2,66 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.container');
     let scrollAllowed = true;
-    const scrollDelay = 700; // Tempo de espera em milissegundos
+    const scrollDelay = 700; // Delay (milliseconds)
 
-    // Função para habilitar rolagem após o atraso
+    // Function to re-enable scrolling after the delay
     function enableScroll() {
         scrollAllowed = true;
     }
 
+    // Listen for mouse wheel events
     document.addEventListener('wheel', function(event) {
         if (scrollAllowed) {
-            // Prevent the default scroll behavior
-            event.preventDefault();
+            event.preventDefault(); // Prevent the default vertical scroll behavior
 
-            // Scroll horizontally based on vertical scroll amount
+            // Scroll the container horizontally by the amount of vertical scroll
             container.scrollBy({
                 left: event.deltaY,
-                behavior: 'smooth' // Adiciona rolagem suave
+                behavior: 'smooth' // Smooth scrolling effect
             });
 
-            // Bloqueia a rolagem temporariamente
-            scrollAllowed = false;
+            scrollAllowed = false; // Temporarily disable scrolling
 
-            // Define um tempo de espera antes de permitir rolar novamente
-            setTimeout(enableScroll, scrollDelay);
+            setTimeout(enableScroll, scrollDelay); // Re-enable scrolling after the delay
         }
     });
+});
 
-     // Função para rolar suavemente para a seção clicada
+// Move trough sections using the navbar
+document.addEventListener('DOMContentLoaded', () => {
      document.querySelectorAll('.nav-links li a').forEach(anchor => {
         anchor.addEventListener('click', function(event) {
-            event.preventDefault();
-            const targetId = this.getAttribute('href').substring(1); // Remove o # do href
-            const targetSection = document.getElementById(targetId);
+            event.preventDefault(); // Prevent the default jump to section behavior
+            const targetId = this.getAttribute('href').substring(1); // Get the target section's ID from the href attribute
+            const targetSection = document.getElementById(targetId); // Find the section with the target ID
 
             if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
+                targetSection.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to the target section
             }
         });
     });
+});
 
-    // Função para as setas serem interagidas
-    const sections = document.querySelectorAll('section');
+//Functions for the arrow controlls
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Function for the arrows to be interacted
+    const sections = document.querySelectorAll('section'); // Select all section elements
     sections.forEach((section, index) => {
+        // Calculate previous and next section indexes
         const prevIndex = index > 0 ? index - 1 : sections.length - 1;
         const nextIndex = index < sections.length - 1 ? index + 1 : 0;
         
-        const leftArrow = section.querySelector('.left-arrow');
-        const rightArrow = section.querySelector('.right-arrow');
+        const leftArrow = section.querySelector('.left-arrow');  // Select the left arrow in the section
+        const rightArrow = section.querySelector('.right-arrow');  // Select the right arrow in the section
         
+        // Add click event to the left arrow to scroll to the previous section
         if (leftArrow) {
             leftArrow.addEventListener('click', () => {
                 sections[prevIndex].scrollIntoView({ behavior: 'smooth' });
             });
         }
-        
+        // Add click event to the right arrow to scroll to the next section
         if (rightArrow) {
             rightArrow.addEventListener('click', () => {
                 sections[nextIndex].scrollIntoView({ behavior: 'smooth' });
@@ -63,49 +69,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Função para fazer as setas aparecerem
-    const edgeThreshold = window.innerWidth / 4; // 25% da largura da tela
+    const edgeThreshold = window.innerWidth / 4; // Threshold for showing arrows (25% of the window width)
 
+    // Function to handle showing or hiding arrows based on mouse position
     function handleMouseMove(event) {
-        const mouseX = event.clientX;
-        const viewportWidth = window.innerWidth;
+        const mouseX = event.clientX; // Get the mouse's X position
+        const viewportWidth = window.innerWidth; // Get the viewport width
 
         sections.forEach((section) => {
-            const leftArrow = section.querySelector('.left-arrow');
-            const rightArrow = section.querySelector('.right-arrow');
+            const leftArrow = section.querySelector('.left-arrow');  // Select the left arrow
+            const rightArrow = section.querySelector('.right-arrow');  // Select the right arrow
 
-            if (section.classList.contains("is-arrow-visible")) {
-                // Mostrar a seta esquerda se o mouse estiver na parte esquerda da tela e existir a seta esquerda
+            if (section.classList.contains("is-arrow-visible")) {  // Check if the section is active
+                // Show or hide the left arrow based on mouse position
                 if (leftArrow && mouseX < edgeThreshold) {
                     leftArrow.classList.add('show-arrow');
                 } else if (leftArrow) {
                     leftArrow.classList.remove('show-arrow');
                 }
-
-                // Mostrar a seta direita se o mouse estiver na parte direita da tela e existir a seta direita
+                // Show or hide the right arrow based on mouse position
                 if (rightArrow && mouseX > viewportWidth - edgeThreshold) {
                     rightArrow.classList.add('show-arrow');
                 } else if (rightArrow) {
                     rightArrow.classList.remove('show-arrow');
                 }
             } else {
-                // Ocultar ambas as setas se a secção não estiver totalmente visível
+                // Hide both arrows if the section is not active
                 if (leftArrow) leftArrow.classList.remove('show-arrow');
                 if (rightArrow) rightArrow.classList.remove('show-arrow');
             }
         });
     }
 
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mousemove', handleMouseMove); // Add mousemove event listener to control arrow visibility
 
-    // Função do IntersectionObserver para detectar visibilidade das secções
+    // Observer to detect when sections are visible
     const observer = new IntersectionObserver(
         entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add("is-arrow-visible");
+                    entry.target.classList.add("is-arrow-visible");  // Mark section as visible
 
-                    // Remover as setas da seção anterior
+                    // Hide arrows in all other sections
                     sections.forEach(section => {
                         if (section !== entry.target) {
                             const leftArrow = section.querySelector('.left-arrow');
@@ -115,64 +120,65 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                 } else {
-                    entry.target.classList.remove("is-arrow-visible");
+                    entry.target.classList.remove("is-arrow-visible");  // Mark section as not visible
                 }
             });
         }, 
         {
-            threshold: 0.5,
+            threshold: 0.5,  // 50% of the section must be visible for it to be considered "intersecting"
         }
-    );   
+    );
 
     sections.forEach(section => {
-        observer.observe(section);
+        observer.observe(section);  // Start observing each section
     });
 });
 
+// Detect visibility of sections' content to show or hide
 document.addEventListener('DOMContentLoaded', function() {
-    const autoShows = document.querySelectorAll(".autoShow")
+    const autoShows = document.querySelectorAll(".autoShow");  // Select elements with the autoShow class
     const observer = new IntersectionObserver(
         entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add("autoShowAnimationOn");
-                    entry.target.classList.remove("autoShowAnimationOff");
+                    entry.target.classList.add("autoShowAnimationOn");  // Show animation when visible
+                    entry.target.classList.remove("autoShowAnimationOff");  // Remove hiding class
                 } else {
-                    entry.target.classList.remove("autoShowAnimationOn");
-                    entry.target.classList.add("autoShowAnimationOff");
+                    entry.target.classList.remove("autoShowAnimationOn");  // Remove animation when not visible
+                    entry.target.classList.add("autoShowAnimationOff");  // Add hiding class
                 }
-            })
-    }, 
+            });
+        }, 
         {
-        threshold: 0.5,
+            threshold: 0.5,  // 50% of the element must be visible for the animation to trigger
         }
-    )   
+    );
 
     autoShows.forEach(autoShow => {
-        observer.observe(autoShow)
-    }) 
+        observer.observe(autoShow);  // Start observing each autoShow element
+    });
 });
 
+// Check what section is visible to underline the navbar content
 document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-links li a');
+    const sections = document.querySelectorAll('section');  // Select all section elements
+    const navLinks = document.querySelectorAll('.nav-links li a');  // Select all navbar links
 
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 navLinks.forEach(link => {
-                    link.classList.remove('active');
+                    link.classList.remove('active');  // Remove active class from all links
                 });
-                const activeLink = document.querySelector(`.nav-links li a[href="#${entry.target.id}"]`);
+                const activeLink = document.querySelector(`.nav-links li a[href="#${entry.target.id}"]`);  // Find the link corresponding to the visible section
                 if (activeLink) {
-                    activeLink.classList.add('active');
+                    activeLink.classList.add('active');  // Add active class to the current link
                 }
             }
         });
-    }, { threshold: 0.5 }); // Ajuste o threshold conforme necessário
+    }, { threshold: 0.5 });  // 50% of the section must be visible to update the navbar
 
     sections.forEach(section => {
-        observer.observe(section);
+        observer.observe(section);  // Start observing each section
     });
 });
-
