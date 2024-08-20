@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
     <script defer src="script.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </head>
 
 <body>
@@ -29,24 +30,35 @@
     <!-- Section Home -->
         <section id="home">
             <div class="autoShow">
-                <div class="home">
+                <div class="home-grid">
                     <div class="text-content">
-                        <h4>Informatic Engineer</h4>
+                        <div class="dynamic-txt">
+                            <span class="blink-up"></span>
+                        </div>
                         <h1>Hello I'm</h1>
                         <h1><span>Rodrigo Anjos</span></h1>
-                        <p id="home-text-1">I'm an intermediate programmer.</p>
-                        <p id="home-text-2">Training to gain experience as a full-stack developer.</p>
+                        <div class="home-text">
+                            <p>I'm an intermediate programmer.</p>
+                            <p id="home-text-2">Training to gain experience as a full-stack developer.</p>
+                        </div>
                         <div class="container-info">
-                            <a href="#" class="btn-cv">Download CV <i class="ri-download-2-line"></i></a>
+                            <a href="#" id="btn-cv">Download CV <i class="ri-download-2-line"></i></a>
                             <div class="container-contact">
                                 <a class="logo" href="https://www.linkedin.com/in/rodrigo-anjos-5532a5196/" target="_blank" rel="noopener noreferrer"><i class="ri-linkedin-fill"></i></a>
                                 <a class="logo" href="https://github.com/kikoanjos" target="_blank" rel="noopener noreferrer"><i class="ri-github-fill"></i></a>
-                                <a class="logo" href="https://www.linkedin.com/in/rodrigo-anjos-5532a5196/" target="_blank" rel="noopener noreferrer"><i class="ri-playstation-fill"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="profile-pic">
                         <img src="photo/Rodrigo_Anjos.png" alt="Rodrigo Anjos">
+                        <span class="blackhole-border"></span>
+                        <span class="blackhole-border"></span>
+                        <span class="blackhole-border"></span>
+                        <span class="blackhole-border"></span>
+                        <span class="blackhole-border"></span> 
+                        <span class="blackhole-ring-front"></span>
+                        <span class="blackhole-ring-back"></span> 
+
                     </div>
                 </div>
             </div>
@@ -54,14 +66,79 @@
         </section>
 
     <!-- Section Resume -->
-        <section id="resume">
-            <div class="autoShow">
-                <h2>Sobre Mim</h2>
-                <p>Tenho X anos de experiência em design web, com um foco em criar sites funcionais e esteticamente agradáveis.</p>
+    <section id="resume">
+        <div class="autoShow">
+            <div class="resume-grid">
+                <div class="resume-left-side">
+                    <h2>Why hire me?</h2>
+                    <p>TextTextTextText TextTextTextText</p>
+                    <div class="resume-buttons">
+                        <button id="btn-experience" class="resume-btn active">Experience</button>
+                        <button id="btn-education" class="resume-btn">Education</button>
+                        <button id="btn-skills" class="resume-btn">Skills</button>
+                        <button id="btn-about" class="resume-btn">About me</button>
+                    </div>
+                </div>
+                <div class="resume-right-side">
+                    <h3>My Experience</h3>
+                    <div id="experience" class="resume-section active">
+                        <div class="experience-item-grid">
+                            <div class="experience-item">
+                                <p><span>2020</span></p>
+                                <p>University projects reparations</p>
+                                <h5><i class="ri-building-2-line"></i>Instituto Superior Técnico - Lisbon University</h5>
+                            </div>
+                            
+                            <div class="experience-item">
+                                <p><span>2019</span></p>
+                                <p>Workshop with python programation - ERASMUS</p>
+                                <h5><i class="ri-building-2-line"></i>INETE - Instituto de Educação Técnica</h5>
+                            </div>
+
+                            <div class="experience-item">
+                                <p><span>2018</span></p>
+                                <p>Autonomous Robot</p>
+                                <h5><i class="ri-star-fill"></i>RoboParty Lisbon</h5>
+                            </div>
+
+                            <div class="experience-item">
+                                <p><span>2019</span></p>
+                                <p>Monitoring Apnea</p>
+                                <h5><i class="ri-star-fill"></i>FAQtos</h5>
+                            </div>
+
+                            <div class="experience-item">
+                                <p><span>2019</span></p>
+                                <p>Projects apresentations</p>
+                                <h5><i class="ri-star-fill"></i>Jovens Cientistas and many more...</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="education" class="resume-section">
+                        <h3>My Education</h3>
+                        <div class="education-item">
+                            <span>2021 - 2024</span>
+                            <p>Informatic Engineer</p>
+                        </div>
+                        <!-- Mais itens de educação -->
+                    </div>
+
+                    <div id="skills" class="resume-section">
+                        <h3>My Skills</h3>
+                        <p>List your skills here...</p>
+                    </div>
+
+                    <div id="about" class="resume-section">
+                        <h3>About Me</h3>
+                        <p>Details about you...</p>
+                    </div>
+                </div>
             </div>
-            <div class="arrow left-arrow">&#10094;</div>
-            <div class="arrow right-arrow">&#10095;</div>
-        </section>
+        </div>
+        <div class="arrow left-arrow">&#10094;</div>
+        <div class="arrow right-arrow">&#10095;</div>
+    </section>
 
     <!-- Section Work -->
         <section id="work">

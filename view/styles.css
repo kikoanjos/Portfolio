@@ -4,10 +4,27 @@
 *  Root (Start)
 *-----------------------------------*/
 :root{
-    --color-primary: #6e2fdc; /* primary color */
-    --color-secondary: #e6e6e6; /* secondary color */
-    --color-tertiary: #b3b3b3; /* tertiary color */
-    --color-light-primary: #6e2fdc70; /* light-primary */
+    --color-primary: rgb(99, 0, 233); /* primary color */
+    --color-secondary: rgb(213, 213, 213); /* secondary color */
+    --color-tertiary: rgb(186, 186, 186); /* tertiary color */
+    --color-light-primary: rgba(97, 0, 233, 0.3); /* light-primary */
+
+    --card-color: rgb(41, 41, 41);
+
+    --blackhole-color-1:rgba(31, 31, 31, 0.8);
+    --blackhole-color-2:rgba(97, 0, 233, 0.8);
+
+    --background-gradient: linear-gradient(
+        120deg,
+        rgb(5, 5, 5),
+        rgb(10, 10, 10),
+        rgb(15, 15, 15),
+        rgb(20, 20, 20)
+    );
+
+    --fw3: 300; /* font weight 300 */
+    --fw4: 400; /* font weight 400 */
+    --fw6: 600; /* font weight 600 */
 }
 /*-----------------------------------
 *  Root (End)
@@ -16,40 +33,96 @@
 /*-----------------------------------
 *  Keyframes (Start)
 *-----------------------------------*/
-@keyframes outline-animation {
+@keyframes bg-animation {
     0% {
-        stroke-dasharray: 0 400;
-        stroke-dashoffset: 0;
-    }
-    25% {
-        stroke-dasharray: 100 300;
-        stroke-dashoffset: 0;
-    }
-    50% {
-        stroke-dasharray: 200 200;
-        stroke-dashoffset: 0;
-    }
-    75% {
-        stroke-dasharray: 300 100;
-        stroke-dashoffset: 0;
+        background-position: left;
     }
     100% {
-        stroke-dasharray: 400 0;
-        stroke-dashoffset: 0;
+        background-position: right;
     }
 }
 
-@keyframes animateBorder {
+@keyframes type-writer-blink {
+    0%,49% {
+        opacity: 0;
+    }
+    50%,100% {
+        opacity: 1;
+    }
+}
+
+@keyframes profile-pic-animation-border {
     0% {
         transform: rotate(0deg);
+        filter: blur(8px);
+    }
+    25%,75% {
+        filter: blur(6px);
+    }
+    50% {
+        filter: blur(2px);
     }
     100% {
+        filter: blur(8px);
         transform: rotate(360deg);
+    }
+}
+
+@keyframes profile-pic-animation-ring-front {
+    0%,100% {
+        filter: blur(2px);
+        box-shadow: 20px 12px 12px -6px var(--blackhole-color-1),
+                    -20px 12px 12px -6px var(--blackhole-color-2);
+    }
+    33% {
+        filter: blur(4px);
+        box-shadow: -20px 12px 12px -6px var(--blackhole-color-1),
+                    20px 12px 12px -6px var(--blackhole-color-2);
+    }
+    66% {
+        filter: blur(4px);
+    }
+}
+
+@keyframes profile-pic-animation-ring-back {
+    0%,100% {
+        filter: blur(2px);
+        box-shadow: -15px -6px 12px 4px var(--blackhole-color-1),
+                    15px -6px 12px 4px var(--blackhole-color-2);
+    }
+    33% {
+        filter: blur(4px);
+    }
+    66% {
+        filter: blur(4px);
+        box-shadow: 15px -6px 12px 4px var(--blackhole-color-1),
+                    -15px -6px 12px 4px var(--blackhole-color-2);
     }
 }
 /*-----------------------------------
 *  Keyframes (End)
-*-----------------------------------/
+*-----------------------------------*/
+
+/*-----------------------------------
+*  Body(Start)
+*-----------------------------------*/
+body {
+    color: var(--color-secondary);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    overflow: hidden;
+
+    background-image: var(--background-gradient);
+    background-size: 500%;
+    background-position: left;
+    animation: bg-animation 3s infinite alternate;
+}
+/*-----------------------------------
+*  Body (End)
+*-----------------------------------*/
 
 /*-----------------------------------
 *  Navbar (Start)
@@ -76,7 +149,7 @@ header {
         text-decoration: none;
         color: var(--color-secondary);
         font-size: 24px;
-        font-weight: 600;
+        font-weight: var(--fw6);
     }
     span {
         color: var(--color-primary);
@@ -91,7 +164,7 @@ header {
     li a {
         text-decoration: none;
         color: var(--color-secondary);
-        font-weight: 400;
+        font-weight: var(--fw4);
         transition: color 0.3s ease;
 
         &:hover {
@@ -108,8 +181,19 @@ header {
 *-----------------------------------*/
 
 /*-----------------------------------
-*  Section **Controlls** (Start)
+*  Section **CONTROLLS** (Start)
 *------------------------------------*/
+.container {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
 section {
     flex: none;
     display: grid;
@@ -129,49 +213,35 @@ section {
         padding: 100px;
         transition: opacity 0.5s ease-out;
     }
-
-    &:nth-of-type(1) {
-        background-image: linear-gradient(to right, rgb(0, 0, 0), rgb(20, 20, 20));
+    &:nth-of-type(1) { 
         width: 95vw;
     }
-
     &:nth-of-type(2) {
-        background-image: linear-gradient(to right, rgb(20, 20, 20), rgb(30, 30, 30));
-
         .autoShow {
-            margin: 0 auto;
-            right: 2%;
+            right: 4%;
         }
     }
-
     &:nth-of-type(3) {
-        background-image: linear-gradient(to right, rgb(30, 30, 30), rgb(20, 20, 20));
-        
         .autoShow {
             right: 2%;
         }
     }
-
-    &:nth-of-type(4) {
-        background-image: linear-gradient(to right, rgb(20, 20, 20), rgb(0, 0, 0));
-        width: 95vw;
-        
+    &:nth-of-type(4) {   
         .autoShow {
             right: 5%;
         }
     }
 }
 
-/*-- autoShow *Controlls* --*/
+/*-- autoShow *CONTROLLS* --*/
 .autoShowAnimationOff {
     opacity: 0;
 }
-
 .autoShowAnimationOn {
     opacity: 1;
 }
 
-/*-- arrow *Controlls* --*/
+/*-- arrow *CONTROLLS* --*/
 .arrow {
     position: absolute;
     top: 50%;
@@ -207,28 +277,7 @@ section {
 /*-----------------------------------
 *  Section - Home (Start)
 *-----------------------------------*/
-body {
-    color: var(--color-secondary);
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center; /* Horizontal centering */
-    overflow: hidden;
-}
-
-.container {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    display: flex;
-    scroll-snap-type: x mandatory;
-    scroll-snap-stop: always;
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-
-.home {
+.home-grid {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -236,18 +285,42 @@ body {
     margin: 300px 200px;
 }
 
+/*-- Home *TEXT CONTENT* --*/
 .text-content {
     display: flex;
     flex-direction: column;
     align-items: start;
 
-    h4 {
-        font-weight: 300;
-        margin: 0;
+    .dynamic-txt {
+        position: relative;
+        font-weight: var(--fw3);
         color: var(--color-tertiary);
+        
+        span {
+            position: relative;
+            display: inline-block;
+            padding-left: 1px;
+
+            &:before {
+                content: "";
+                right: -3px;
+                position: absolute;
+                height: 24px;
+                width: 2px;
+                background: var(--color-primary);
+                animation: type-writer-blink 1s infinite;
+            }
+        }
+        .stop-blink::before {
+            animation: none;
+        }
+        .blink-up::before {
+            top: -16px;
+        }
     }
+
     h1 {
-        font-weight: 600;
+        font-weight: var(--fw6);
         font-size: 48px;
         margin: -8px 0;
 
@@ -255,26 +328,31 @@ body {
             color: var(--color-primary);
         }
     }
-    p{
+
+    .home-text {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        margin-top: 4px;
+    }
+
+    p {
+        font-weight: var(--fw4);
         font-size: 16px;
-    }
-    #home-text-1 {
-        font-weight: 400;
-        margin-top: 20px;
         color: var(--color-secondary);
     }
+
     #home-text-2 {
-        font-weight: 400;
         margin-top: -20px;
-        color: var(--color-secondary);
     }
 }
 
+/*-- Home *CONTACT CONTENT* --*/
 .contact-info{
     display: grid;
 }
 
-.btn-cv {
+#btn-cv {
     display: inline-block;
     padding: 10px 20px;
     border: 1px solid var(--color-primary);
@@ -311,37 +389,198 @@ body {
     }
 }
 
+/*-- Home *PROFILE PICTURE* --*/
 .profile-pic {
     position: relative;
-    width: 400px;
-    height: 400px;
+    align-content: center;
+    max-width: 20vw;
+    max-height: 40vw;
 
     img {
         border-radius: 50%;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        background-color: rgb(0, 0, 0, 0.9);
+        z-index: 1;
     }
 
-    &::before {
-        content: '';
+    .blackhole-border {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
         border-radius: 50%;
-        border: 3px solid transparent;
-        border-top-color: var(--color-primary); /* Cor do traço animado */
-        border-bottom-color: var(--color-primary);
-        box-sizing: border-box;
-        animation: animateBorder 4s linear infinite;
+        top: 0%;
+        left: 0%;
+        width: 102%;
+        height: 102%;
+        box-shadow: 2px -2px 2px var(--blackhole-color-1), inset 2px -2px 2px var(--blackhole-color-2);
+        animation: profile-pic-animation-border 3s linear infinite;
+        z-index: -1;
+    }
+    .blackhole-ring-front {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 110%;
+        height: 50%;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: profile-pic-animation-ring-front 3s linear infinite;
+    }
+    .blackhole-ring-back {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 110%;
+        height: 50%;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: profile-pic-animation-ring-back 3s linear infinite reverse;
+        z-index: -1;
     }
 }
 /*-----------------------------------
 *  Section - Home (End)
 *-----------------------------------*/
 
+/*-----------------------------------
+*  Section - Resume (Start)
+*-----------------------------------*/
+.resume-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 100px;
+    width: 100vh;
+    min-height: 50vh;
+    padding: 20px;
+
+    &:nth-child(1) {
+        align-items: center;
+    }
+}
+
+/*-- Resume *LEFT SIDE* --*/
+.resume-left-side {
+    min-width: 30%;
+}
+
+.resume-btn {
+    display: block;
+    background-color: transparent;
+    padding: 10px 20px;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: var(--color-light-primary);
+        color: var(--color-secondary);
+    }
+}
+
+.resume-btn.active {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+/*-- Resume *RIGHT SIDE* --*/
+.resume-right-side {
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        display: flex;
+        align-content: start;
+    }
+}
+
+.resume-section {
+    display: none;
+}
+
+.resume-section.active {
+    display: block;
+}
+
+/*-- Resume *EXPERIENCE* --*/
+#experience {
+    max-height: 44vh; /* Ajuste conforme necessário para exibir 4 itens */
+    width: 200%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 27px;
+    padding-bottom: 30px;
+    scrollbar-color: var(--color-primary); /* Cor do thumb, sem fundo */
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent; /* Sem fundo */
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--color-primary); /* Cor da parte que desliza na barra de rolagem */
+        border-radius: 8px; /* Bordas levemente arredondadas */
+    }
+}
+
+.experience-item-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) ;
+    grid-auto-rows: 1fr;
+    width: 20vw;
+    gap: 40px;
+}
+
+.experience-item{
+    border-radius: 3px;
+    width: 20vw;
+    min-height: 5vw;
+    text-align: left;
+    box-shadow: 4px 4px 6px var(--color-primary);
+    background-color: var(--card-color);
+    display: grid;
+
+    p{
+        display: flex;
+        align-content: start;
+        margin-left: 2em;
+        margin-right: 20px;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+
+        span{
+            margin-bottom: -30px;
+            font-size: 20px;
+            color: var(--color-primary);
+        }
+    }
+    h5{
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        color: #6c757d;
+        margin-left: 2.5em;
+        gap: 6px;
+
+        i{
+            margin-right: 10px;
+            font-size: 18px;
+            color: var(--color-secondary);
+        }
+    }
+}
+/*-- Resume *EDUCATION --*/
+/*-----------------------------------
+*  Section - Resume (End)
+*-----------------------------------*/
 @media(prefers-reduce-motion) {
     .hidden {
         transition: none;

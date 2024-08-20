@@ -182,3 +182,65 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);  // Start observing each section
     });
 });
+
+// Show the content related to the active button
+document.querySelectorAll('.resume-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove 'active' de todos os botões e seções
+        document.querySelectorAll('.resume-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.resume-section').forEach(section => section.classList.remove('active'));
+
+        // Adiciona 'active' ao botão e seção clicados
+        button.classList.add('active');
+        const sectionId = button.id.replace('btn-', '');
+        document.getElementById(sectionId).classList.add('active');
+    });
+});
+
+// Animation of the type writting
+document.addEventListener('DOMContentLoaded', function() {
+    const dynamicText = document.querySelector(".dynamic-txt span");
+    const words = ["Informatic Enginner", "Eletronics Technician"];
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let noText = false;
+
+    const typeEffect = () => {
+        const currentWord = words[wordIndex];
+        const currentChar = currentWord.substring(0, charIndex);
+        dynamicText.textContent = currentChar;
+        dynamicText.classList.add("stop-blink");
+
+        if(!isDeleting && charIndex < currentWord.length) {
+            if(charIndex > 0){
+                dynamicText.classList.remove("blink-up");
+            }
+            // Type characters
+            charIndex++;
+            setTimeout(typeEffect, 100);
+        }
+        else if(isDeleting && charIndex > 0) {
+            // Remove characters
+            charIndex--;
+            setTimeout(typeEffect, 80);
+        }
+        else {
+            if(noText === false){
+                dynamicText.classList.remove("blink-up");
+                noText = !noText;
+            }
+            else{
+                dynamicText.classList.add("blink-up");
+                noText = !noText;
+            }
+            // Switch to next word
+            isDeleting = !isDeleting;
+            dynamicText.classList.remove("stop-blink");
+            wordIndex = !isDeleting ? (wordIndex + 1) % words.length : wordIndex;
+            setTimeout(typeEffect, 1800);
+        }
+    }
+    typeEffect();
+});
