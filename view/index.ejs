@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="eng-eng">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio de Web Designer</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script defer src="script.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </head>
@@ -39,7 +40,7 @@
                         <h1><span>Rodrigo Anjos</span></h1>
                         <div class="home-text">
                             <p>I'm an intermediate programmer.</p>
-                            <p id="home-text-2">Training to gain experience as a full-stack developer.</p>
+                            <p id="home-text-2">Training to gain experience as a developer.</p>
                         </div>
                         <div class="container-info">
                             <a href="cv/CV_Rodrigo_Anjos_2024.pdf" download="" id="btn-cv">Download CV <i class="ri-download-2-line"></i></a>
@@ -76,7 +77,7 @@
                         <button id="btn-experience" class="resume-btn active">Experience</button>
                         <button id="btn-education" class="resume-btn">Education</button>
                         <button id="btn-skills" class="resume-btn">Skills</button>
-                        <button id="btn-about" class="resume-btn">About me</button>
+                        <button id="btn-bio" class="resume-btn">Bio</button>
                     </div>
                 </div>
                 <div class="resume-right-side">
@@ -85,20 +86,14 @@
                         <div class="experience-item-grid">
                             <div class="experience-item">
                                 <p><span>2020</span></p>
-                                <p>University projects reparations</p>
-                                <h5><i class="ri-building-2-line"></i>Instituto Superior Técnico - Lisbon University</h5>
+                                <p>University projects repars</p>
+                                <h5><i class="ri-building-2-line"></i><a class="resume_link" href="https://tecnico.ulisboa.pt" target="_blank" rel="noopener noreferrer">Instituto Superior Técnico - Lisbon University</a></h5>
                             </div>
                             
                             <div class="experience-item">
                                 <p><span>2019</span></p>
                                 <p>Workshop with python programation - ERASMUS</p>
-                                <h5><i class="ri-building-2-line"></i>INETE - Instituto de Educação Técnica</h5>
-                            </div>
-
-                            <div class="experience-item">
-                                <p><span>2018</span></p>
-                                <p>Autonomous Robot</p>
-                                <h5><i class="ri-star-fill"></i>RoboParty Lisbon</h5>
+                                <h5><i class="ri-building-2-line"></i><a class="resume_link" href="https://www.inete.pt" target="_blank" rel="noopener noreferrer">INETE - Instituto de Educação Técnica</a></h5>
                             </div>
 
                             <div class="experience-item">
@@ -112,26 +107,105 @@
                                 <p>Projects apresentations</p>
                                 <h5><i class="ri-star-fill"></i>Jovens Cientistas and many more...</h5>
                             </div>
+
+                            <div class="experience-item">
+                                <p><span>2018</span></p>
+                                <p>Autonomous Robot</p>
+                                <h5><i class="ri-star-fill"></i>RoboParty Lisbon</h5>
+                            </div>
                         </div>
                     </div>
 
                     <div id="education" class="resume-section">
-                        <h3>My Education</h3>
-                        <div class="education-item">
-                            <span>2021 - 2024</span>
-                            <p>Informatic Engineer</p>
+                        <div class="education-item-grid">
+                            <div class="education-item">
+                                <p><span>2021-2024</span></p>
+                                <p>Computer Science and engineering</p>
+                                <h5><i class="ri-building-2-line"></i><a class="resume_link" href="https://autonoma.pt/en/" target="_blank" rel="noopener noreferrer">UAL - Autonomous University of Lisbon</a></h5>
+                            </div>
+                                
+                            <div class="education-item">
+                                <p><span>2017-2020</span></p>
+                                <p>Eletronics Technician</p>
+                                <h5><i class="ri-building-2-line"></i><a class="resume_link" href="https://www.inete.pt" target="_blank" rel="noopener noreferrer">INETE - Instituto de Educação Técnica</a></h5>
+                            </div>
                         </div>
                         <!-- Mais itens de educação -->
                     </div>
 
                     <div id="skills" class="resume-section">
-                        <h3>My Skills</h3>
-                        <p>List your skills here...</p>
+                        <div class="skills-text-grid">
+                            <h2 id="skills-text1">Programs</h2>
+                            <h2>Code Languages</h2>
+                        </div>
+                        <div class="skills-container">
+                            <div class="skills-item-grid">
+                                <div class="skills-item">
+                                    <i class="fa-solid fa-database"></i>
+                                    <div class="tooltip">MongoDB</div>
+                                </div>
+                                <div class="skills-item">
+                                    <i class="fa-solid fa-server"></i>
+                                    <div class="tooltip">MySQL</div>
+                                </div>
+                                <div class="skills-item">
+                                    <i class="fa-solid fa-code"></i>
+                                    <div class="tooltip">VSCode</div>
+                                </div>
+                                <div class="skills-item">
+                                    <i class="fa-solid fa-terminal"></i>
+                                    <div class="tooltip">IntelliJ</div>
+                                </div>
+                                <div class="skills-item">
+                                    <i class="fa-solid fa-network-wired"></i>
+                                    <div class="tooltip">AutoCAD</div>
+                                </div>
+                                <div class="skills-item">
+                                    <i class="fa-solid fa-microchip"></i>
+                                    <div class="tooltip">Arduino IDE</div>
+                                </div>
+                            </div>
+                            <div class="skills-item-grid">
+                                <div class="skills-item">
+                                    <i class="fa-solid fa-c"></i>
+                                    <div class="tooltip">C/C++/C#</div>  
+                                </div>
+                                <div class="skills-item">
+                                    <i class="fa-solid fa-moon"></i>
+                                    <div class="tooltip">Lua</div>
+                                </div>
+                                <div class="skills-item">
+                                    <i class="fa-brands fa-html5"></i>
+                                    <div class="tooltip">HTML5</div>
+                                </div>
+                                <div class="skills-item">
+                                    <i class="fa-brands fa-python"></i>
+                                    <div class="tooltip">Pyhton</div>
+                                </div>
+                                <div class="skills-item">
+                                    <i class="fa-brands fa-java"></i>
+                                    <div class="tooltip">Java</div>
+                                </div>
+                                <div class="skills-item">
+                                    <i class="fa-brands fa-js"></i>
+                                    <div class="tooltip">JavaScript</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div id="about" class="resume-section">
-                        <h3>About Me</h3>
-                        <p>Details about you...</p>
+                    <div id="bio" class="resume-section">
+                        <div class="bio-grid">
+                            <div class="bio-column">
+                                <p class="bio-items"><strong>Name:</strong> Rodrigo Anjos</p>
+                                <p class="bio-items"><strong>Nationality:</strong> Portuguese</p>
+                                <p class="bio-items"><strong>Languages:</strong> Portuguese, English</p>
+                            </div>
+                            <div class="bio-column">
+                                <p class="bio-items"><strong>Phone:</strong> (+351) 938 187 991</p>
+                                <p class="bio-items"><strong>LinkedIn:</strong><a class="bio-linkedin" href="https://www.linkedin.com/in/rodrigo-anjos-5532a5196/" target="_blank" rel="noopener noreferrer">PROFILE PAGE</a></p>
+                                <p class="bio-items"><strong>Email:</strong> rodrigoanjos10@gmail.com</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -141,25 +215,83 @@
     </section>
 
     <!-- Section Work -->
-        <section id="work">
-            <div class="autoShow">
-                <h2>Meus Trabalhos</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ipsum veniam modi dolores ipsam esse 
-                eligendi minus corporis optio nam, recusandae consequatur dolorum id libero. Aliquid consectetur magni sint quaerat.</p>
+    <section id="work">
+        <div class="autoShow">
+            <div class="work-grid">
+                <div class="work-left-side">
+                    <div class="project-info">
+                        <h1 id="project-number">00</h1>
+                        <h2 id="project-title">00</h2>
+                        <p id="project-description">00</p>
+                        <p id="project-applications">00</p>
+                    </div>
+                </div>
+                <div class="work-right-side">
+                    <h1 id="project-course">00</h1>
+                    <div class="project-show">
+                        <video id="project-video" controls>
+                            <source src="video/Projeto_CC++_Rodrigo_Anjos_I170211.mp4" type="video/mp4">
+                        </video>
+                        <img id="project-image" src="img/B2B_IMG_1.jpg" hidden>
+                        <div class="buttons">
+                            <button id="prevBtn">&#10094;</button>
+                            <button id="nextBtn">&#10095;</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="arrow left-arrow">&#10094;</div>
-            <div class="arrow right-arrow">&#10095;</div>
-        </section>
+        </div>
+        <div class="arrow left-arrow">&#10094;</div>
+        <div class="arrow right-arrow">&#10095;</div>
+    </section>
         
     <!-- Section Contact -->
-        <section id="contact">
-            <div class="autoShow">
-                <h2>Contato</h2>
-                <a href="https://www.linkedin.com/in/rodrigo-anjos-5532a5196/">Linkdine</a>
+    <section id="contact">
+        <div class="autoShow">
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h2>Let's work together</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt sit illo esse commodi.</p>
+                    
+                    <form id="contactForm">
+                        <div class="input-group">
+                            <input type="text" id="firstname" placeholder="Firstname" required>
+                            <input type="text" id="lastname" placeholder="Lastname" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="email" placeholder="Email address" required>
+                            <input type="tel" id="phone" placeholder="Phone number" required>
+                        </div>
+                        <select id="service" required>
+                            <option value="" disabled selected>Select a service</option>
+                            <option value="Eletronics Technician">Eletronics Technician</option>
+                            <option value="Informatic Engineer">Informatic Engineer</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <textarea id="message" placeholder="Type your message here." rows="4" maxlength="240" required></textarea>
+                        <div class="char-counter" id="charCounter">0/240</div>
+                        <button type="submit">Send message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="info-item">
+                        <span class="icon"><i class="ri-phone-line"></i></span>
+                        <p>(+351) 938 187 991</p>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon"><i class="ri-mail-line"></i></span>
+                        <p>rodrigoanjos10@gmail</p>
+                    </div>
+                </div>
             </div>
-            <div class="arrow left-arrow">&#10094;</div>
-            <div class="arrow right-arrow" id="unique-right-arrow">&#10095;</div>
-        </section>
-    </div>
+        </div>
+        <div class="arrow left-arrow">&#10094;</div>
+        <div class="arrow right-arrow">&#10095;</div>
+    </section>
 </body>
+<div id="lightbox" class="lightbox hidden">
+    <span id="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Imagem em fullscreen">
+</div>
 </html>

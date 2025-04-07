@@ -25,6 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(enableScroll, scrollDelay); // Re-enable scrolling after the delay
         }
     });
+
+    // Disable horizontal scroll when mouse is over the 'experience' section
+    const resumeSections = document.querySelectorAll('#experience');
+
+    resumeSections.forEach(section => {
+        section.addEventListener('mouseover', () => {
+            scrollAllowed = false;
+        });
+        section.addEventListener('mouseout', () => {
+            scrollAllowed = true;
+        });
+    });
 });
 
 // Move trough sections using the navbar
@@ -194,6 +206,18 @@ document.querySelectorAll('.resume-btn').forEach(button => {
         button.classList.add('active');
         const sectionId = button.id.replace('btn-', '');
         document.getElementById(sectionId).classList.add('active');
+
+        // Atualiza o título h3 de acordo com a seção ativa
+        const titleElement = document.querySelector('.resume-right-side h3');
+        if (sectionId === 'experience') {
+            titleElement.textContent = 'My Experience';
+        } else if (sectionId === 'education') {
+            titleElement.textContent = 'My Education';
+        } else if (sectionId === 'skills') {
+            titleElement.textContent = 'My Skills';
+        } else if (sectionId === 'bio') {
+            titleElement.textContent = 'My Bio';
+        }
     });
 });
 
@@ -243,4 +267,120 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     typeEffect();
+});
+
+// Work projects slideshow
+document.addEventListener('DOMContentLoaded', () => {
+    const projects = [
+        {
+            number: "01",
+            title: "Projeto CC++",
+            description: "Application of detection of object using IfraRed Sensor and Buzzer",
+            applications: "Arduino Uno, C++",
+            course: "Eletronics Technician",
+            show: "video/Projeto_CC++_Rodrigo_Anjos_I170211.mp4"
+        },
+        {
+            number: "02",
+            title: "Projeto AutoCad",
+            description: "Descrição do projeto 2...",
+            applications: "",
+            course: "Eletronics Technician",
+            show: "video/Rodrigo_Anjos_I170211.mp4"
+        },
+        {
+            number: "03",
+            title: "Projeto Circuitos",
+            description: "Descrição do projeto 3...",
+            applications: "",
+            course: "Eletronics Technician",
+            show: "video/Tarefa_2_Rodrigo_Anjos_I170211.mp4"
+        },
+        {
+            number: "04",
+            title: "Projeto Semáforos",
+            description: "Descrição do projeto 4...",
+            applications: "",
+            course: "Eletronics Technician",
+            show: "video/Tarefa_3_Rodrigo_Anjos_I170211.mp4"
+        },
+        {
+            number: "05",
+            title: "Projeto Web B2B",
+            description: "Descrição do projeto 5...",
+            applications: "",
+            course: "Informatic Enginner",
+            show: "img/B2B_IMG_1.jpg"
+        }
+    ];
+
+    let currentIndex = 0;
+
+    function updateProject() {
+        document.getElementById("project-number").textContent = projects[currentIndex].number;
+        document.getElementById("project-title").textContent = projects[currentIndex].title;
+        document.getElementById("project-description").textContent = projects[currentIndex].description;
+        document.getElementById("project-applications").textContent = projects[currentIndex].applications;
+        document.getElementById("project-course").textContent = projects[currentIndex].course;
+        
+        const videoElement = document.getElementById("project-video");
+        const imageElement = document.getElementById("project-image");
+
+        if (projects[currentIndex].show.endsWith(".mp4")) {
+                videoElement.innerHTML = `<source src="${projects[currentIndex].show}" type="video/mp4">`;
+                videoElement.load(); // Recarrega o vídeo para refletir a mudança
+
+                videoElement.style.display = "block";
+                imageElement.style.display = "none";
+        }
+        else {
+            imageElement.src = projects[currentIndex].show;
+
+            imageElement.style.display = "block";
+            videoElement.style.display = "none";
+        };
+    }
+
+    document.getElementById("prevBtn").addEventListener("click", function() {
+        currentIndex = (currentIndex === 0) ? projects.length - 1 : currentIndex - 1;
+        updateProject();
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", function() {
+        currentIndex = (currentIndex === projects.length - 1) ? 0 : currentIndex + 1;
+        updateProject();
+    });
+
+    updateProject();
+});
+
+// Character count for message form
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("message").addEventListener("input", function() {
+        let charCount = this.value.length;
+        document.getElementById("charCounter").textContent = charCount + "/240";
+    });
+});
+
+// Form sender to email
+document.getElementById('contactForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const formData = {
+        firstname: document.getElementById('firstname').value,
+        lastname: document.getElementById('lastname').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        service: document.getElementById('service').value,
+        message: document.getElementById('message').value
+    };
+
+    const response = await fetch('http://localhost:3000/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    });
+
+    const result = await response.json();
+    alert(result.success || result.error);
 });

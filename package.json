@@ -1,7 +1,11 @@
 {
   "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
-    "express": "^4.19.2",
+    "express": "^4.21.2",
+    "nodemailer": "^6.10.0",
     "remixicon": "^4.3.0"
   },
   "name": "portfolio",

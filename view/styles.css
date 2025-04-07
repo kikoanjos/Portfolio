@@ -31,6 +31,47 @@
 *-----------------------------------*/
 
 /*-----------------------------------
+*  lightbox (Img Fullscreen) (Start)
+*-----------------------------------*/
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  }
+  
+  #lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .hidden {
+    display: none;
+  }
+  
+  /*-----------------------------------
+*  lightbox (Img Fullscreen) (End)
+*-----------------------------------*/
+
+/*-----------------------------------
 *  Keyframes (Start)
 *-----------------------------------*/
 @keyframes bg-animation {
@@ -223,10 +264,11 @@ section {
     }
     &:nth-of-type(3) {
         .autoShow {
-            right: 2%;
+            right: 14%;
         }
     }
-    &:nth-of-type(4) {   
+    &:nth-of-type(4) { 
+        right: 10%;  
         .autoShow {
             right: 5%;
         }
@@ -496,6 +538,7 @@ section {
     h3 {
         display: flex;
         align-content: start;
+        font-size: larger;
     }
 }
 
@@ -505,6 +548,16 @@ section {
 
 .resume-section.active {
     display: block;
+}
+
+.resume_link {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 /*-- Resume *EXPERIENCE* --*/
@@ -539,6 +592,64 @@ section {
 }
 
 .experience-item{
+    border-radius: 8px;
+    width: 20vw;
+    min-height: 5vw;
+    text-align: left;
+    box-shadow: 4px 4px 6px var(--color-primary);
+    background-color: var(--card-color);
+    display: grid;
+
+    p{
+        display: flex;
+        align-content: start;
+        margin-left: 2em;
+        margin-right: 20px;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+
+        span{
+            margin-bottom: -30px;
+            font-size: 20px;
+            color: var(--color-primary);
+        }
+    }
+    h5{
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        color: var(--color-tertiary);
+        margin-left: 2.5em;
+        gap: 6px;
+
+        i{
+            margin-right: 10px;
+            font-size: 18px;
+            color: var(--color-secondary);
+        }
+    }
+}
+/*-- Resume *EDUCATION* --*/
+#education {
+    max-height: 44vh; /* Ajuste conforme necessário para exibir 4 itens */
+    width: 200%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 27px;
+    padding-bottom: 30px;
+}
+
+.education-item-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) ;
+    grid-auto-rows: 1fr;
+    width: 20vw;
+    gap: 40px;
+}
+
+.education-item{
     border-radius: 3px;
     width: 20vw;
     min-height: 5vw;
@@ -566,7 +677,7 @@ section {
         display: flex;
         align-items: center;
         margin-right: 20px;
-        color: #6c757d;
+        color: var(--color-tertiary);
         margin-left: 2.5em;
         gap: 6px;
 
@@ -577,9 +688,363 @@ section {
         }
     }
 }
-/*-- Resume *EDUCATION --*/
+
+/*-- Resume *SKILLS* --*/
+#skills {
+    max-height: 44vh; /* Limite de altura ajustável conforme necessário */
+    width: 100%; /* Ocupa 100% da largura do container */
+    box-sizing: border-box;
+    padding-right: 20px;
+    padding-bottom: 30px;
+}
+
+.skills-text-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas por linha */
+    gap: 5vw; /* Espaçamento entre os itens */
+    justify-items: start; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+    width: 100%; /* Ajuste a largura conforme necessário */
+    max-width: 200px; /* Limite de largura para não expandir demais */
+    margin-left: 2vw;
+
+    h2{
+        margin-top: 0;
+        font-size: 25px;
+    }
+}
+
+#skills-text1{
+    margin-right: 4.8vw;
+}
+
+.skills-container {
+    display: flex; /* Flexbox para alinhar na horizontal */
+    justify-content: space-between; /* Espaço entre os grids */
+    align-items: flex-start; /* Alinha os grids ao topo */
+    gap: 100px; /* Espaçamento entre os grids */
+    width: 20vw; /* Ocupar a largura total do container */
+}
+
+/* Estilos individuais para cada grid */
+.skills-item-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas por linha */
+    gap: 30px; /* Espaçamento entre os itens */
+    justify-items: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+    width: 20vw; /* Ajuste a largura conforme necessário */
+    max-width: 400px; /* Limite de largura para não expandir demais */
+}
+
+
+.skills-item {
+    position: relative; /* Necessário para posicionar a tooltip */
+    border-radius: 10px;
+    width: 5vw;  /* Tamanho fixo do item */
+    height: 5vw; /* Tamanho fixo do item */
+    text-align: center;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    background-color: var(--card-color);
+    display: flex; /* Para centralização flexível */
+    justify-content: center; /* Centraliza o ícone horizontalmente */
+    align-items: center;     /* Centraliza o ícone verticalmente */
+    transition: transform 0.3s ease; /* Animação de hover */
+
+    i{
+        font-size: 2vw; /* Tamanho dos ícones */
+        color: var(--color-secondary); /* Cor dos ícones */
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    &:hover{
+        i{
+            color: var(--color-primary);
+        }
+        .tooltip {
+            transform: translateX(-50%) scale(1); /* Move para a posição final */
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+}
+
+/* Tooltip styling */
+.tooltip {
+    position: absolute;
+    bottom: 85%; /* Posiciona a tooltip acima do ícone */
+    left: 50%;
+    transform: translateX(-50%) scale(0.2);
+    background-color: var(--color-secondary); /* Fundo da tooltip */
+    color: var(--color-primary); /* Cor do texto */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none; /* Evita que a tooltip interfira no hover */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 10; /* Certifica-se de que a tooltip está acima de outros elementos */
+}
+
+/*-- Resume *BIO* --*/
+#bio {
+    padding-top: 30px;
+    border-radius: 10px;
+}
+
+.bio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+    gap: 40px; /* Espaçamento entre as colunas */
+    width: 38vw;
+    height: 100%;
+    align-items: start;
+}
+
+.bio-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start ;
+    gap: 30px; /* Espaçamento entre os textos */
+
+    p{
+        font-size: 1.2rem; /* Tamanho das letras */
+        margin: 0;
+        color: var(--color-secondary);
+    }
+
+    strong{
+        margin-right: 8px;
+        color: var(--color-primary);
+    }
+}
+
+.bio-items {
+    display: flex;
+    align-items: start;
+    width: 20vw;  /* Tamanho fixo do item */
+}
+
+.bio-linkedin {
+    color: inherit;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+        color: var(--color-primary);
+    }
+}
+
 /*-----------------------------------
 *  Section - Resume (End)
+*-----------------------------------*/
+/*-----------------------------------
+*  Section - Work (Start)
+*-----------------------------------*/
+.work-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 100px;
+    width: 80vh;
+    min-height: 45vh;
+    padding: 20px;
+}
+
+.work-left-side{
+    min-width: 72%;
+}
+
+.work-right-side{
+    position: relative;
+    bottom: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-info {
+    max-width: 475px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    h1{
+        font-size: 72px;
+        margin: 10px;
+        
+    }
+
+    h2 {
+        font-size: 48px;    
+        margin: 10px;
+    }
+
+    #project-description { 
+        text-align: start;
+        font-size: 14px;
+        margin: 10px;
+        color: var(--color-tertiary);
+    }
+
+    #project-applications {
+        display: block;
+        color: var(--color-primary);
+        font-size: 20px;
+        margin: 10px;
+    }
+}
+
+.project-show {
+    width: 34.07vw;
+    height: 19.16vw;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--color-primary);
+
+    video, img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* A imagem vai cobrir completamente o contêiner */
+        object-position: center; /* A imagem ficará centralizada */
+    }   
+}
+
+.buttons {
+    position: relative;
+    top: 10px;
+    left: 14.64vw;
+    gap: 10px;
+    z-index: 2;
+
+    button {
+        background-color: transparent;
+        border: 2px solid var(--color-primary);
+        border-radius: 2px;
+        color: var(--color-primary);
+        cursor: pointer;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 16px;
+        padding-right: 16px;
+        font-size: 16px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        &:hover {
+            background-color: var(--color-light-primary);
+            color: var(--color-secondary);
+        }
+    }
+}
+/*-----------------------------------
+*  Section - Work (Start)
+*-----------------------------------*/
+/*-----------------------------------
+*  Section - Contact (Start)
+*-----------------------------------*/
+    .contact-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .contact-form {
+        background: var(--card-color);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px var(--color-primary);
+        flex: 1;
+    }
+
+    .contact-form h2 {
+        color: var(--color-primary);
+    }
+
+    .input-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid var(--color-primary);
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--color-tertiary);
+        border-radius: 4px;
+        resize: none;
+    }
+
+    option {
+        color: var(--color-primary);
+        background-color: var(--color-tertiary);
+    }
+
+    textarea{
+        width: 96%;
+    }
+
+    .char-counter {
+        position: relative;
+        bottom: 34px;
+        left: 225px;
+        font-size: 0.8rem;
+        color: var(--color-secondary);
+        pointer-events: none;
+    }
+
+    button {
+        background-color: transparent;
+        border: 2px solid var(--color-primary);
+        border-radius: 2px;
+        color: var(--color-tertiary);
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        &:hover {
+            background-color: var(--color-light-primary);
+            color: var(--color-secondary);
+        }
+    }
+
+    .contact-info {
+        top: 130px;
+        left: 40px;
+        position: relative;
+        padding: 20px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 20px;
+
+        span{
+            margin-top: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 20%;
+            border-color: var(--color-primary);
+        }
+    }
+
+    .icon {
+        font-size: 1.5rem;
+        color: var(--color-primary);
+    }
+/*-----------------------------------
+*  Section - Contact (End)
 *-----------------------------------*/
 @media(prefers-reduce-motion) {
     .hidden {
