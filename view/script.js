@@ -198,16 +198,16 @@ document.addEventListener('DOMContentLoaded', function() {
 // Show the content related to the active button
 document.querySelectorAll('.resume-btn').forEach(button => {
     button.addEventListener('click', () => {
-        // Remove 'active' de todos os botões e seções
+        // Removes 'active' from other buttons and sections
         document.querySelectorAll('.resume-btn').forEach(btn => btn.classList.remove('active'));
         document.querySelectorAll('.resume-section').forEach(section => section.classList.remove('active'));
 
-        // Adiciona 'active' ao botão e seção clicados
+        // Adds 'active' to the selected button and section
         button.classList.add('active');
         const sectionId = button.id.replace('btn-', '');
         document.getElementById(sectionId).classList.add('active');
 
-        // Atualiza o título h3 de acordo com a seção ativa
+        // Updates the title from h3 to corresponding section
         const titleElement = document.querySelector('.resume-right-side h3');
         if (sectionId === 'experience') {
             titleElement.textContent = 'My Experience';
@@ -274,43 +274,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const projects = [
         {
             number: "01",
-            title: "Projeto CC++",
-            description: "Application of detection of object using IfraRed Sensor and Buzzer",
+            title: "Project CC++",
+            description: "Application to detect an object using IfraRed Sensor and Buzzer",
             applications: "Arduino Uno, C++",
             course: "Eletronics Technician",
-            show: "video/Projeto_CC++_Rodrigo_Anjos_I170211.mp4"
+            video: "video/Projeto_CC++_Rodrigo_Anjos_I170211.mp4"
         },
         {
             number: "02",
-            title: "Projeto AutoCad",
-            description: "Descrição do projeto 2...",
-            applications: "",
+            title: "Eletric Installation",
+            description: "Building and eletric installation of 2 apartments T2 and T3",
+            applications: "Autocad",
             course: "Eletronics Technician",
-            show: "video/Rodrigo_Anjos_I170211.mp4"
+            video: "video/Rodrigo_Anjos_I170211.mp4"
         },
         {
             number: "03",
-            title: "Projeto Circuitos",
-            description: "Descrição do projeto 3...",
-            applications: "",
+            title: "Circuits Logic",
+            description: "Realization of 4 exercices in Multisim",
+            applications: "Multisim, Eletronics",
             course: "Eletronics Technician",
-            show: "video/Tarefa_2_Rodrigo_Anjos_I170211.mp4"
+            video: "video/Tarefa_2_Rodrigo_Anjos_I170211.mp4"
         },
         {
             number: "04",
-            title: "Projeto Semáforos",
-            description: "Descrição do projeto 4...",
-            applications: "",
+            title: "Light Traffics",
+            description: "Programing a logic circuit for an automation of light traffics",
+            applications: "Ladder Programing",
             course: "Eletronics Technician",
-            show: "video/Tarefa_3_Rodrigo_Anjos_I170211.mp4"
+            video: "video/Tarefa_3_Rodrigo_Anjos_I170211.mp4"
         },
         {
             number: "05",
-            title: "Projeto Web B2B",
-            description: "Descrição do projeto 5...",
-            applications: "",
+            title: "Web B2B",
+            description: "Bulding of a Bussiness-to-Bussiness service website",
+            applications: "EJS, CSS, JS, SQL",
             course: "Informatic Enginner",
-            show: "img/B2B_IMG_1.jpg"
+            images: ["img/B2B_IMG_1.jpg","img/B2B_IMG_2.jpg","img/B2B_IMG_3.jpg","img/B2B_IMG_4.jpg"]
+        },
+        {
+            number: "06",
+            title: "Web Restaurant",
+            description: "Bulding of a Restaurant website",
+            applications: "EJS, CSS, JS, SQL",
+            course: "Informatic Enginner",
+            images: ["img/BURGUER_IMG_1.jpg","img/BURGUER_IMG_2.jpg","img/BURGUER_IMG_3.jpg","img/BURGUER_IMG_4.jpg"]
         }
     ];
 
@@ -323,22 +331,66 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("project-applications").textContent = projects[currentIndex].applications;
         document.getElementById("project-course").textContent = projects[currentIndex].course;
         
+        const project = projects[currentIndex];
+
         const videoElement = document.getElementById("project-video");
-        const imageElement = document.getElementById("project-image");
+        const imagesContainer = document.getElementById("project-images");
 
-        if (projects[currentIndex].show.endsWith(".mp4")) {
-                videoElement.innerHTML = `<source src="${projects[currentIndex].show}" type="video/mp4">`;
-                videoElement.load(); // Recarrega o vídeo para refletir a mudança
+        // Clean previous images
+        imagesContainer.innerHTML = "";
 
-                videoElement.style.display = "block";
-                imageElement.style.display = "none";
+        if (project.video) {
+            // Show video
+            videoElement.innerHTML = `<source src="${project.video}" type="video/mp4">`;
+            videoElement.load();
+            videoElement.style.display = "block";
+    
+            imagesContainer.style.display = "none";
         }
-        else {
-            imageElement.src = projects[currentIndex].show;
+        else if (project.images && project.images.length > 0) {
+            // Show images grid
+            project.images.forEach(src => {
+                const img = document.createElement("img");
+                img.src = src;
+                imagesContainer.appendChild(img);
 
-            imageElement.style.display = "block";
+                // Lightbox (Big picture)
+                img.addEventListener('click', () => {
+                    const overlay = document.createElement('div');
+                    overlay.style.position = 'fixed';
+                    overlay.style.top = 0;
+                    overlay.style.left = 0;
+                    overlay.style.width = '100vw';
+                    overlay.style.height = '100vh';
+                    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                    overlay.style.display = 'flex';
+                    overlay.style.alignItems = 'center';
+                    overlay.style.justifyContent = 'center';
+                    overlay.style.zIndex = 1000;
+
+                    const zoomedImg = document.createElement('img');
+                    zoomedImg.src = src;
+                    zoomedImg.style.maxWidth = '60vw';
+                    zoomedImg.style.maxHeight = '60vh';
+                    zoomedImg.style.boxShadow = '0 0 50px var(--color-primary)';
+                    zoomedImg.style.borderRadius = '10px';
+
+                    overlay.appendChild(zoomedImg);
+                    document.body.appendChild(overlay);
+
+                    overlay.addEventListener('click', () => overlay.remove());
+                    document.addEventListener('keydown', function escHandler(e) {
+                        if (e.key === 'Escape') {
+                            overlay.remove();
+                            document.removeEventListener('keydown', escHandler);
+                        }
+                    });
+                });
+            });
+    
             videoElement.style.display = "none";
-        };
+            imagesContainer.style.display = "grid";
+        }
     }
 
     document.getElementById("prevBtn").addEventListener("click", function() {

@@ -66,7 +66,7 @@
   .hidden {
     display: none;
   }
-  
+
   /*-----------------------------------
 *  lightbox (Img Fullscreen) (End)
 *-----------------------------------*/
@@ -562,24 +562,24 @@ section {
 
 /*-- Resume *EXPERIENCE* --*/
 #experience {
-    max-height: 44vh; /* Ajuste conforme necessário para exibir 4 itens */
+    max-height: 44vh;
     width: 200%;
     box-sizing: border-box;
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 27px;
     padding-bottom: 30px;
-    scrollbar-color: var(--color-primary); /* Cor do thumb, sem fundo */
+    scrollbar-color: var(--color-primary);
 
     &::-webkit-scrollbar {
         width: 8px;
     }
     &::-webkit-scrollbar-track {
-        background: transparent; /* Sem fundo */
+        background: transparent;
     }
     &::-webkit-scrollbar-thumb {
-        background-color: var(--color-primary); /* Cor da parte que desliza na barra de rolagem */
-        border-radius: 8px; /* Bordas levemente arredondadas */
+        background-color: var(--color-primary);
+        border-radius: 8px;
     }
 }
 
@@ -632,7 +632,7 @@ section {
 }
 /*-- Resume *EDUCATION* --*/
 #education {
-    max-height: 44vh; /* Ajuste conforme necessário para exibir 4 itens */
+    max-height: 44vh;
     width: 200%;
     box-sizing: border-box;
     overflow-y: auto;
@@ -691,8 +691,8 @@ section {
 
 /*-- Resume *SKILLS* --*/
 #skills {
-    max-height: 44vh; /* Limite de altura ajustável conforme necessário */
-    width: 100%; /* Ocupa 100% da largura do container */
+    max-height: 44vh;
+    width: 100%;
     box-sizing: border-box;
     padding-right: 20px;
     padding-bottom: 30px;
@@ -700,12 +700,12 @@ section {
 
 .skills-text-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colunas por linha */
-    gap: 5vw; /* Espaçamento entre os itens */
-    justify-items: start; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Centraliza os itens verticalmente */
-    width: 100%; /* Ajuste a largura conforme necessário */
-    max-width: 200px; /* Limite de largura para não expandir demais */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5vw;
+    justify-items: start;
+    align-items: center;
+    width: 100%;
+    max-width: 200px;
     margin-left: 2vw;
 
     h2{
@@ -719,41 +719,40 @@ section {
 }
 
 .skills-container {
-    display: flex; /* Flexbox para alinhar na horizontal */
-    justify-content: space-between; /* Espaço entre os grids */
-    align-items: flex-start; /* Alinha os grids ao topo */
-    gap: 100px; /* Espaçamento entre os grids */
-    width: 20vw; /* Ocupar a largura total do container */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 100px;
+    width: 20vw;
 }
 
-/* Estilos individuais para cada grid */
 .skills-item-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colunas por linha */
-    gap: 30px; /* Espaçamento entre os itens */
-    justify-items: center; /* Centraliza os itens horizontalmente */
-    align-items: center; /* Centraliza os itens verticalmente */
-    width: 20vw; /* Ajuste a largura conforme necessário */
-    max-width: 400px; /* Limite de largura para não expandir demais */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    justify-items: center;
+    align-items: center;
+    width: 20vw;
+    max-width: 400px;
 }
 
 
 .skills-item {
-    position: relative; /* Necessário para posicionar a tooltip */
+    position: relative;
     border-radius: 10px;
-    width: 5vw;  /* Tamanho fixo do item */
-    height: 5vw; /* Tamanho fixo do item */
+    width: 5vw;
+    height: 5vw;
     text-align: center;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
     background-color: var(--card-color);
-    display: flex; /* Para centralização flexível */
-    justify-content: center; /* Centraliza o ícone horizontalmente */
-    align-items: center;     /* Centraliza o ícone verticalmente */
-    transition: transform 0.3s ease; /* Animação de hover */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
 
     i{
-        font-size: 2vw; /* Tamanho dos ícones */
-        color: var(--color-secondary); /* Cor dos ícones */
+        font-size: 2vw;
+        color: var(--color-secondary);
         transition: background-color 0.3s ease, color 0.3s ease;
     }
 
@@ -762,7 +761,7 @@ section {
             color: var(--color-primary);
         }
         .tooltip {
-            transform: translateX(-50%) scale(1); /* Move para a posição final */
+            transform: translateX(-50%) scale(1);
             opacity: 1;
             pointer-events: auto;
         }
@@ -772,19 +771,19 @@ section {
 /* Tooltip styling */
 .tooltip {
     position: absolute;
-    bottom: 85%; /* Posiciona a tooltip acima do ícone */
+    bottom: 85%;
     left: 50%;
     transform: translateX(-50%) scale(0.2);
-    background-color: var(--color-secondary); /* Fundo da tooltip */
-    color: var(--color-primary); /* Cor do texto */
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 14px;
     white-space: nowrap;
     opacity: 0;
-    pointer-events: none; /* Evita que a tooltip interfira no hover */
+    pointer-events: none;
     transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index: 10; /* Certifica-se de que a tooltip está acima de outros elementos */
+    z-index: 10;
 }
 
 /*-- Resume *BIO* --*/
@@ -795,8 +794,8 @@ section {
 
 .bio-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
-    gap: 40px; /* Espaçamento entre as colunas */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
     width: 38vw;
     height: 100%;
     align-items: start;
@@ -806,10 +805,10 @@ section {
     display: flex;
     flex-direction: column;
     align-items: flex-start ;
-    gap: 30px; /* Espaçamento entre os textos */
+    gap: 30px;
 
     p{
-        font-size: 1.2rem; /* Tamanho das letras */
+        font-size: 1.2rem;
         margin: 0;
         color: var(--color-secondary);
     }
@@ -823,7 +822,7 @@ section {
 .bio-items {
     display: flex;
     align-items: start;
-    width: 20vw;  /* Tamanho fixo do item */
+    width: 20vw;
 }
 
 .bio-linkedin {
@@ -862,6 +861,7 @@ section {
     flex-direction: column;
 }
 
+/*-- Work *LEFT SIDE* --*/
 .project-info {
     max-width: 475px;
     display: flex;
@@ -894,6 +894,7 @@ section {
     }
 }
 
+/*-- Work *RIGHT SIDE* --*/
 .project-show {
     width: 34.07vw;
     height: 19.16vw;
@@ -902,12 +903,34 @@ section {
     border-radius: 10px;
     box-shadow: 0 0 10px var(--color-primary);
 
-    video, img {
+    video{
         width: 100%;
         height: 100%;
-        object-fit: cover; /* A imagem vai cobrir completamente o contêiner */
-        object-position: center; /* A imagem ficará centralizada */
+        object-fit: cover;
+        object-position: center;
     }   
+}
+
+#project-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 2px;
+    max-width: 100%;
+  
+    img {
+        width: 17vw;
+        height: 9vw;
+        height: auto;
+        object-fit: cover;
+        cursor: pointer;
+        box-shadow: 0 0 10px var(--color-primary);
+        transition: transform 0.2s ease;
+        
+        img:hover {
+        transform: scale(1.03);
+        }
+    }
 }
 
 .buttons {
@@ -937,7 +960,7 @@ section {
     }
 }
 /*-----------------------------------
-*  Section - Work (Start)
+*  Section - Work (End)
 *-----------------------------------*/
 /*-----------------------------------
 *  Section - Contact (Start)
@@ -949,17 +972,17 @@ section {
         max-width: 900px;
         margin: auto;
     }
-
+/*-- Contact *LEFT SIDE* --*/
     .contact-form {
         background: var(--card-color);
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 4px 8px var(--color-primary);
         flex: 1;
-    }
-
-    .contact-form h2 {
+        
+        h2 {
         color: var(--color-primary);
+        }
     }
 
     .input-group {
@@ -978,13 +1001,13 @@ section {
         resize: none;
     }
 
+    textarea{
+        width: 96%;
+    }
+
     option {
         color: var(--color-primary);
         background-color: var(--color-tertiary);
-    }
-
-    textarea{
-        width: 96%;
     }
 
     .char-counter {
@@ -1012,7 +1035,7 @@ section {
             color: var(--color-secondary);
         }
     }
-
+/*-- Contact *RIGHT SIDE* --*/
     .contact-info {
         top: 130px;
         left: 40px;
@@ -1046,8 +1069,14 @@ section {
 /*-----------------------------------
 *  Section - Contact (End)
 *-----------------------------------*/
+/*-----------------------------------
+*  Mobile media (Start)
+*-----------------------------------*/
 @media(prefers-reduce-motion) {
     .hidden {
         transition: none;
     }
 }
+/*-----------------------------------
+*  Mobile media (End)
+*-----------------------------------*/
