@@ -1020,7 +1020,7 @@ section {
         flex: 1;
         
         h2 {
-        color: var(--color-primary);
+        color: yellow;
         }
     }
 
